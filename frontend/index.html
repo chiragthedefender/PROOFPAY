@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Freelock - Decentralized Escrow Protocol</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="bg-gradient-mesh"></div>
+
+    <nav class="navbar">
+        <div class="container navbar-container">
+            <div class="brand">
+                <svg class="logo-mark" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:32px; height:32px; background:transparent; box-shadow:none;">
+                    <!-- Lock Body -->
+                    <rect x="6" y="14" width="12" height="12" rx="2" stroke="var(--brand-primary)" stroke-width="2"/>
+                    <path d="M9 14V10C9 8.34315 10.3431 7 12 7C13.6569 7 15 8.34315 15 10V14" stroke="var(--brand-primary)" stroke-width="2"/>
+                    <!-- Keyhole -->
+                    <circle cx="12" cy="19" r="1.5" fill="var(--brand-primary)"/>
+                    <path d="M12 20.5V23" stroke="var(--brand-primary)" stroke-width="2"/>
+                    <!-- Blockchain Key -->
+                    <path d="M18 19H28" stroke="var(--brand-accent)" stroke-width="2"/>
+                    <polygon points="30,19 28,17 25,17 23,19 25,21 28,21" stroke="var(--brand-accent)" stroke-width="2" fill="transparent"/>
+                    <circle cx="20" cy="19" r="1.5" fill="var(--brand-accent)"/>
+                    <path d="M20 19V22M17 19V21" stroke="var(--brand-accent)" stroke-width="2"/>
+                    <circle cx="17" cy="21" r="1" fill="var(--brand-accent)"/>
+                    <circle cx="20" cy="22" r="1" fill="var(--brand-accent)"/>
+                </svg>
+                <h2>Freelock</h2>
+            </div>
+            
+            <div class="nav-links">
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#stats" class="nav-link">Network Stats</a>
+                <a href="#trust" class="nav-link">Security</a>
+            </div>
+
+            <div class="nav-actions">
+                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+                    <svg id="theme-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+                <a href="./app.html" class="btn btn-primary btn-glow">Launch App</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 1. Hero Section -->
+    <section class="hero-section">
+        <div class="container hero-container">
+            <div class="badge-pill mb-4 mx-auto block" style="width: max-content;">Escrow V2 is Live on Beam</div>
+            <h1 class="hero-title">Zero Trust.<br><span class="text-gradient">Zero Delays.</span></h1>
+            <p class="hero-subtitle">The enterprise-grade decentralized freelancer escrow protocol. Secure your funds in an immutable smart contract, complete milestones, and execute payouts instantly.</p>
+            <div class="hero-cta-group">
+                <a href="./app.html" class="btn btn-primary btn-lg btn-glow">Get Started</a>
+                <a href="#features" class="btn btn-outline btn-lg">Explore Docs</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. Dribbble-inspired Bento Metrics / Stats -->
+    <section id="stats" class="section-container">
+        <div class="container">
+            <div class="bento-grid">
+                <!-- Large Highlight Card -->
+                <div class="bento-card glass-panel bento-span-2 highlight-card">
+                    <div class="stat-content">
+                        <h3 class="stat-number text-gradient" id="tvl-stat">$0.00</h3>
+                        <p class="stat-label">Total Value Locked (TVL)</p>
+                    </div>
+                </div>
+                <!-- Small Metric Card -->
+                <div class="bento-card glass-panel">
+                    <div class="stat-content">
+                        <h3 class="stat-number">10k+</h3>
+                        <p class="stat-label">Active Freelancers</p>
+                    </div>
+                </div>
+                <!-- Small Metric Card -->
+                <div class="bento-card glass-panel">
+                    <div class="stat-content">
+                        <h3 class="stat-number">2.4M</h3>
+                        <p class="stat-label">Contracts Executed</p>
+                    </div>
+                </div>
+                <!-- Graphic Card -->
+                <div class="bento-card glass-panel bento-span-4" style="padding:0; overflow:hidden; display:flex;">
+                    <div style="flex:1; padding:2rem;">
+                        <h3 class="text-xl font-bold mb-2">Automated Milestones</h3>
+                        <p class="text-secondary">Set conditions, let code execute. Freelock continuously audits job constraints before releasing partial or full payouts to contractors automatically.</p>
+                    </div>
+                    <div style="flex:1; background:var(--bg-base); position:relative; display:flex; align-items:center; justify-content:center; border-left:1px solid var(--border-subtle);">
+                        <svg width="120" height="40" viewBox="0 0 120 40" fill="none" style="opacity: 0.5;">
+                            <path d="M0 20 H 40 M 60 20 H 120" stroke="var(--brand-primary)" stroke-width="4" stroke-dasharray="4 4" />
+                            <circle cx="50" cy="20" r="8" fill="var(--brand-primary)" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. How It Works -->
+    <section id="features" class="how-it-works-section section-container">
+        <div class="container">
+            <div class="section-header">
+                <h2>A unified flow for clients & creators</h2>
+            </div>
+            <div class="steps-grid">
+                <div class="step-card glass-panel">
+                    <div class="step-icon">1</div>
+                    <h3 class="text-primary mb-2">Deposit & Lock</h3>
+                    <p>Client locks agreed budget in a secure smart contract. Funds are verifiably held on-chain.</p>
+                </div>
+                <div class="step-card glass-panel">
+                    <div class="step-icon">2</div>
+                    <h3 class="text-primary mb-2">Build & Deliver</h3>
+                    <p>Freelancer completes the scope confidently, knowing the capital is 100% secured and reserved.</p>
+                </div>
+                <div class="step-card glass-panel">
+                    <div class="step-icon">3</div>
+                    <h3 class="text-primary mb-2">Frictionless Payout</h3>
+                    <p>Upon client approval, funds instantly bridge to the freelancer's wallet. Zero withdrawal fees.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Footer CTA Section -->
+    <section class="cta-section" style="padding-top:4rem;">
+        <div class="container">
+            <div class="cta-box glass-panel text-center">
+                <h2>Production ready Escrow.</h2>
+                <p>Join the next generation protocol protecting digital labor.</p>
+                <a href="./app.html" class="btn btn-primary btn-lg btn-glow mt-4">Launch Dashboard</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Essential logic for Landing page theme and stats -->
+    <script>
+        // Landing page specific logic (Theme toggle port)
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+
+        function initTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+            if (savedTheme === 'light' || (!savedTheme && prefersLight)) {
+                document.documentElement.setAttribute('data-theme', 'light');
+                setThemeIcon('light');
+            } else {
+                document.documentElement.removeAttribute('data-theme');
+                setThemeIcon('dark');
+            }
+        }
+
+        function setThemeIcon(theme) {
+            if (theme === 'light') {
+                themeIcon.innerHTML = `<circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>`;
+            } else {
+                themeIcon.innerHTML = `<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>`;
+            }
+        }
+
+        themeToggleBtn.addEventListener('click', () => {
+            let currentTheme = document.documentElement.getAttribute('data-theme');
+            if (currentTheme === 'light') {
+                document.documentElement.removeAttribute('data-theme');
+                localStorage.setItem('theme', 'dark');
+                setThemeIcon('dark');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'light');
+                localStorage.setItem('theme', 'light');
+                setThemeIcon('light');
+            }
+        });
+
+        initTheme();
+
+        // Fetch TVL Stats
+        fetch('http://localhost:3000/api/stats').then(res => res.json()).then(data => {
+            document.getElementById('tvl-stat').textContent = '$' + (data.totalValueLocked * 3140.5).toLocaleString() + ' +'; // Mock native currency multiplier
+        }).catch(() => console.log("Backend not active"));
+    </script>
+</body>
+</html>

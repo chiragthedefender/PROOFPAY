@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Freelock Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/6.10.0/ethers.umd.min.js"></script>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="bg-gradient-mesh"></div>
+
+    <div class="app-layout">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar glass-panel" style="border-radius: 0; box-shadow: none;">
+            <div class="brand mb-4">
+                <svg class="logo-mark" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:32px; height:32px; background:transparent; box-shadow:none;">
+                    <!-- Lock Body -->
+                    <rect x="6" y="14" width="12" height="12" rx="2" stroke="var(--brand-primary)" stroke-width="2"/>
+                    <path d="M9 14V10C9 8.34315 10.3431 7 12 7C13.6569 7 15 8.34315 15 10V14" stroke="var(--brand-primary)" stroke-width="2"/>
+                    <!-- Keyhole -->
+                    <circle cx="12" cy="19" r="1.5" fill="var(--brand-primary)"/>
+                    <path d="M12 20.5V23" stroke="var(--brand-primary)" stroke-width="2"/>
+                    <!-- Blockchain Key -->
+                    <path d="M18 19H28" stroke="var(--brand-accent)" stroke-width="2"/>
+                    <polygon points="30,19 28,17 25,17 23,19 25,21 28,21" stroke="var(--brand-accent)" stroke-width="2" fill="transparent"/>
+                    <circle cx="20" cy="19" r="1.5" fill="var(--brand-accent)"/>
+                    <path d="M20 19V22M17 19V21" stroke="var(--brand-accent)" stroke-width="2"/>
+                    <circle cx="17" cy="21" r="1" fill="var(--brand-accent)"/>
+                    <circle cx="20" cy="22" r="1" fill="var(--brand-accent)"/>
+                </svg>
+                <h2 style="font-size: 1.1rem;">Freelock App</h2>
+            </div>
+
+            <nav style="margin-top: 3rem;">
+                <a class="sidebar-link active" id="nav-overview">Overview</a>
+                <a class="sidebar-link" id="nav-contracts">Contracts</a>
+                <a class="sidebar-link" id="nav-create">Create Job</a>
+                <a class="sidebar-link" id="nav-profile">Profile</a>
+            </nav>
+
+            <div style="position: absolute; bottom: 2rem;">
+                <a href="./index.html" class="sidebar-link"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:text-bottom; margin-right:4px;" viewBox="0 0 24 24"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4M10 17l5-5-5-5M15 12H3"/></svg> Landing Page</a>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="app-content">
+            <header style="display:flex; justify-content:flex-end; margin-bottom: 2rem;">
+                <div class="nav-actions">
+                    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+                        <svg id="theme-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                        </svg>
+                    </button>
+                    <div id="wallet-info" class="wallet-info hidden">
+                        <span class="address" id="wallet-address">0x...</span>
+                    </div>
+                    <button id="connect-wallet" class="btn btn-primary btn-glow">Connect Wallet</button>
+                </div>
+            </header>
+
+            <!-- View: OVERVIEW -->
+            <section id="view-overview" class="view-section">
+                <h2 style="margin-bottom: 2rem;">Dashboard</h2>
+                
+                <div class="bento-grid">
+                    <div class="bento-card glass-panel bento-span-2 highlight-card">
+                        <div class="stat-content">
+                            <h3 style="font-size: 1rem; color: var(--text-secondary);">Your Reputation</h3>
+                            <h3 class="stat-number text-gradient" id="user-reputation">--</h3>
+                            <p class="stat-label">Trusted User Score</p>
+                        </div>
+                    </div>
+                    <div class="bento-card glass-panel">
+                        <div class="stat-content">
+                            <h3 style="font-size: 1rem; color: var(--text-secondary);">Active Contracts</h3>
+                            <h3 class="stat-number" id="user-active-jobs">0</h3>
+                        </div>
+                    </div>
+                    <div class="bento-card glass-panel">
+                        <div class="stat-content">
+                            <h3 style="font-size: 1rem; color: var(--text-secondary);">Total Earned</h3>
+                            <h3 class="stat-number" id="user-earned">0.0</h3>
+                            <p class="stat-label">ETH</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 style="margin-top: 3rem; margin-bottom: 1rem;">Recent Activity</h3>
+                <div class="glass-panel" style="padding: 2rem;">
+                    <p class="text-secondary text-center">No recent activity detected.</p>
+                </div>
+            </section>
+
+            <!-- View: CONTRACTS -->
+            <section id="view-contracts" class="view-section hidden">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 2rem;">
+                    <h2>Manage Contracts</h2>
+                    <button class="btn btn-outline" id="btn-refresh-contracts">Refresh</button>
+                </div>
+                
+                <div id="jobs-container" class="jobs-feed">
+                    <div class="empty-state glass-panel" style="padding:4rem 2rem;">
+                        <p>No active contracts.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- View: CREATE -->
+            <section id="view-create" class="view-section hidden">
+                <h2 style="margin-bottom: 2rem;">Initialize Escrow Contract</h2>
+                <div class="glass-panel" style="padding: 3rem; max-width: 600px;">
+                    <form id="create-job-form">
+                        <div class="input-group">
+                            <label>Contract Title</label>
+                            <input type="text" id="job-title" placeholder="e.g. Audit Smart Contract" required>
+                        </div>
+                        <div class="input-group">
+                            <label>Freelancer Address</label>
+                            <input type="text" id="freelancer-address" placeholder="0x..." required>
+                        </div>
+                        <div class="input-group">
+                            <label>Budget (ETH)</label>
+                            <input type="number" step="0.001" id="job-budget" placeholder="0.5" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-full" id="btn-create-job" style="margin-top: 1rem;">
+                            <span class="btn-text">Sign & Lock Funds</span>
+                            <span class="spinner hidden"></span>
+                        </button>
+                    </form>
+                </div>
+            </section>
+
+            <!-- View: PROFILE -->
+            <section id="view-profile" class="view-section hidden">
+                <h2 style="margin-bottom: 2rem;">User Profile</h2>
+                <div class="glass-panel" style="padding: 3rem; max-width: 800px;">
+                    <div style="display:flex; gap: 2rem; align-items:center; margin-bottom: 2rem; border-bottom: 1px solid var(--border-subtle); padding-bottom: 2rem;">
+                        <div style="width:80px; height:80px; border-radius:50%; background:var(--brand-primary); display:flex; align-items:center; justify-content:center; font-size:2rem; font-weight:800; color:#fff;">0x</div>
+                        <div>
+                            <h3 id="profile-address" style="font-family:var(--font-mono); color:var(--text-secondary);">Connect wallet to view</h3>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 style="margin-bottom: 1rem;">Trust & Verification</h4>
+                        <p class="text-secondary mb-4">Complete KYC or bond collateral to increase your Trust Score limits.</p>
+                        <button class="btn btn-outline" disabled>Identity Hub (Coming Soon)</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Minimal Toast -->
+    <div id="toast" class="toast">
+        <div class="toast-content"><span id="toast-msg"></span></div>
+    </div>
+
+    <!-- UI Overlay -->
+    <div id="transaction-overlay" class="modal-overlay hidden">
+        <div class="modal glass-panel text-center">
+            <div class="spinner-lg"></div>
+            <h3 class="mt-4" id="modal-title">Awaiting Confirmation</h3>
+            <p class="text-sm text-secondary mt-2" id="modal-desc">Please confirm the transaction in your wallet.</p>
+        </div>
+    </div>
+
+    <script type="module" src="./app.js"></script>
+</body>
+</html>
